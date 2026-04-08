@@ -1,173 +1,211 @@
-# Agentic Umbrella Platform – Backend
+# 🚀 Agentic Umbrella Platform
 
-## 📌 Project Overview
-
-This project is a backend system for managing contractors, agencies, and umbrella companies.
-It supports user management, work tracking, compliance, and audit logging.
+A full-stack web application designed to manage **compliance, audit tracking, user management, and system monitoring** through a centralized dashboard.
 
 ---
 
-## 🧱 Tech Stack
+## 📌 Overview
 
-* Backend: Django (Python)
-* Database: PostgreSQL
-* API: Django REST Framework
-* Admin Panel: Django Admin
+The **Agentic Umbrella Platform** is built to simulate enterprise-level workflows involving:
 
----
+* Compliance validation
+* Audit tracking
+* Exception handling
+* User activity monitoring
 
-## ⚙️ Current Implementation Status
-
-### ✅ Completed
-
-* Backend APIs implemented
-* PostgreSQL database integrated
-* Custom User Model (core.User)
-* Organisation, Membership, Work Record modules
-* Audit logging system
-* Admin panel for full data management
-
-### 🔄 Pending / To Be Integrated
-
-* Frontend integration
-* Advanced business logic (if any remaining)
-* Deployment setup
+It provides a **modern dashboard UI** powered by React and a **robust backend API** using Django REST Framework.
 
 ---
 
-## 🗄️ Database Setup (PostgreSQL)
+## ✨ Features
 
-1. Install PostgreSQL
+### 📊 Dashboard
 
-2. Create database:
+* Displays key metrics like:
 
-   ```
-   umbrella_db
-   ```
+  * Audit events
+  * Active exceptions
+  * Compliance pass rate
+  * Pending RTI submissions
 
-3. Update credentials in:
+### 👥 Users Module
 
-   ```
-   backend/config/settings.py
-   ```
+* View all users from backend
+* Integrated with custom Django user model
 
-Example:
+### ✅ Compliance System
 
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'umbrella_db',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres123',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+* Track compliance checks
+* Calculate pass/fail rates
+
+### ⚠️ Exception Handling
+
+* Monitor blocking issues
+* Track severity levels
+
+### 🔔 Notifications
+
+* Event-based notification system (backend ready)
+
+### 🔐 Authentication
+
+* JWT-based login system
+* Access & refresh tokens
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* ⚛️ React (Vite)
+* 🎨 Tailwind CSS
+* 🔗 Axios (API calls)
+
+### Backend
+
+* 🐍 Django
+* 🔧 Django REST Framework
+* 🔐 Simple JWT Authentication
+* 🗄️ SQLite / PostgreSQL
+
+---
+
+## 📂 Project Structure
+
+```
+agentic-umbrella/
+│
+├── backend/
+│   ├── compliance/
+│   ├── audit/
+│   ├── notifications/
+│   ├── exceptions_handler/
+│   ├── core/
+│   └── config/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   ├── pages/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Users.jsx
+│   │   └── services/
+│   │       └── api.js
+│
+└── README.md
 ```
 
 ---
 
-## 🚀 Backend Setup Instructions
+## ⚙️ Setup Instructions
 
-### 1. Clone Repository
+### 🔽 1. Clone Repository
 
+```bash
+git clone https://github.com/harshu0712/agentic-umbrella.git
+cd agentic-umbrella
 ```
-git clone <repo-link>
-cd agentic-umbrella/backend
-```
 
-### 2. Create Virtual Environment
+---
 
-```
+### 🐍 2. Backend Setup
+
+```bash
+cd backend
 python -m venv venv
-venv\Scripts\activate
-```
+venv\Scripts\activate   # Windows
 
-### 3. Install Dependencies
-
-```
 pip install -r requirements.txt
-```
 
-### 4. Apply Migrations
-
-```
+python manage.py makemigrations
 python manage.py migrate
-```
 
-### 5. Run Server
-
-```
 python manage.py runserver
 ```
 
----
-
-## 🌐 API Access
-
-Base URL:
+Backend will run at:
 
 ```
-http://127.0.0.1:8000/
-```
-
-Available Endpoints:
-
-* `/admin/` → Admin Panel
-* `/api/health/` → Health Check
-* `/api/v1/auth/` → Authentication
-* `/api/v1/audit/` → Audit Logs
-* `/api/v1/notifications/`
-* `/api/v1/compliance/`
-
----
-
-## 🔐 Admin Access
-
-Create admin user:
-
-```
-python manage.py createsuperuser
-```
-
-Login:
-
-```
-http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000
 ```
 
 ---
 
-## 🔗 System Architecture (Concept)
+### ⚛️ 3. Frontend Setup
 
-* Contractor (User)
-* Agency (Organisation)
-* Umbrella (Organisation)
-* Membership → links user & organisation
-* Work Records → track hours & payments
-* Audit Logs → track system activity
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
----
+Frontend will run at:
 
-## 🔄 Integration Notes (For Further Development)
-
-* Frontend can consume APIs via REST endpoints
-* Authentication uses token-based system
-* Database is fully structured and ready
-* Ensure `.env` or credentials are configured properly
+```
+http://localhost:4000
+```
 
 ---
 
-## 📌 Important Notes
+## 🔗 API Endpoints
 
-* Do not upload `venv/`
-* Ensure PostgreSQL is running before starting backend
-* Migrations must be applied before running server
+| Feature     | Endpoint              |
+| ----------- | --------------------- |
+| Dashboard   | `/api/dashboard/`     |
+| Users       | `/api/users/`         |
+| Login       | `/api/token/`         |
+| Refresh JWT | `/api/token/refresh/` |
 
 ---
 
-## 👨‍💻 Author Notes
+## 🔐 Authentication Flow
 
-Backend is fully functional and tested with PostgreSQL.
-Ready for frontend integration and further enhancements.
+* User logs in → receives access + refresh tokens
+* Access token used for API calls
+* Refresh token generates new access token
+
+---
+
+## 🧠 Key Learnings
+
+* Full-stack integration (React + Django)
+* API handling with Axios
+* JWT authentication implementation
+* State management using React hooks
+* UI design using Tailwind CSS
+
+---
+
+## 🚀 Future Enhancements
+
+* 📈 Charts & analytics dashboard
+* ✏️ Edit / Delete users
+* 🔍 Search & filtering
+* 📡 Real-time updates (WebSockets)
+* 📊 Advanced reporting
+
+---
+
+## 👨‍💻 Author
+
+**Harshith R S**
+
+---
+
+## 📢 Notes
+
+This project demonstrates a **complete full-stack workflow**, including:
+
+* Backend API design
+* Frontend integration
+* Authentication system
+* Clean UI design
+
+Suitable for:
+
+* Internship projects
+* Academic submissions
+* Portfolio showcase
