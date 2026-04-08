@@ -934,3 +934,7 @@ tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+/* Content spacing */
+.content-area {
+  margin-top: 10px;
+}
