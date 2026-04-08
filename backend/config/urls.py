@@ -2,11 +2,12 @@
 URL configuration for Agentic Umbrella Platform.
 API v1 routing for Module 6 (Compliance) and Module 7 (Audit, Notifications, Exceptions).
 """
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from compliance.views import dashboard_data, users_list
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -16,6 +17,10 @@ from rest_framework_simplejwt.views import (
 from core.views import HealthCheckView
 
 urlpatterns = [
+    path("api/users/", users_list),
+     path('api/token/', TokenObtainPairView.as_view()),   # 🔐 LOGIN
+    path('api/token/refresh/', TokenRefreshView.as_view()),  # 🔄 REFRESH
+    path("api/dashboard/", dashboard_data),
     # Admin
     path('admin/', admin.site.urls),
 
